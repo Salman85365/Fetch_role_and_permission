@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from knox.models import AuthToken
 from .serializers import UserSerializer, RegisterSerializer
 
+""" This view is used for login in backend which is using AuthUserSerializer and it returns User Role and permissions """
 class AuthUser(BaseAPIView):
     serializer_class = AuthUserSerializer
     permission_classes = (AllowAny,)
@@ -37,9 +38,13 @@ class AuthUser(BaseAPIView):
 
 
 # Register API
+""" This view is using django build-in GenericAPIView for Register User and 
+    it returns User and the assigned token """
+
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
+
 class RegisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
 

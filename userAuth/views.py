@@ -6,6 +6,8 @@ from .models import User
 from django.shortcuts import redirect
 from django.contrib import auth
 
+""" This view is used in front-end for login through username and password 
+    and return username , Role and Permission in HTML """
 def authenticate(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -26,7 +28,8 @@ def authenticate(request):
         return render(request, "user_role_and_perm.html",context)
     return render(request,"login.html")
 
-
+""" This view is used in front-end for Register through username, email
+    and password and return username , Role and Permissions in HTML """
 def register(request):
 
     if request.method == 'POST':
@@ -52,6 +55,7 @@ def register(request):
     else:
         return render(request, 'register.html')
 
+""" This view is simple django build-in logout which is using auth package of Django """
 def logout(request):
     auth.logout(request)
     return redirect('login')

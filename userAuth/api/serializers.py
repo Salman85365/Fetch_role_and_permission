@@ -8,19 +8,21 @@ User = get_user_model()
 
 from rest_framework import serializers
 
-
+"""A serializer for login with username and password"""
 class AuthUserSerializer(serializers.Serializer):
     username = serializers.CharField(required=True,max_length=80)
     password = serializers.CharField(required=True,max_length=80,trim_whitespace=True)
 
 
 # User Serializer
+"""A serializer for serializing two fields of User Model. (username and email)"""
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email')
 
 # Register Serializer
+"""This serializer is used for Registering user through api/register"""
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
