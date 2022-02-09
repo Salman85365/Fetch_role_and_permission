@@ -21,7 +21,7 @@ class User(AbstractUser):
     password = models.CharField(_('password'), max_length=128,blank=True,null=True)
 
     dob = models.DateField(null=True,blank=True)
-    role = models.CharField(max_length=10, choices=USER_TYPE_CHOICES, default=ADMIN)
+    role = models.CharField(max_length=10, choices=USER_TYPE_CHOICES, default=CUSTOMER)
     is_active = models.BooleanField(default=True)
     email = models.EmailField()
     is_staff = models.BooleanField(

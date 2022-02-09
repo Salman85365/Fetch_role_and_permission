@@ -5,21 +5,26 @@
     <title>login</title>
 </head>
 <body>
-<h4>Login Here</h4>
+<h4>Register Here</h4>
 <form action="" method="POST">
     {% csrf_token %}
     <label>Username</label>
     <input type="text" name="username">
     <br>
     <br>
+    <label>Email</label>
+    <input type="text" name="email">
+    <br>
+    <br>
     <label>Password</label>
-    <input type="password" name="password">
+    <input type="password" name="password1">
     <br>
     <br>
-    <input type="submit" name="submit" value="authenticate">
+    <label>Confirm Password</label>
+    <input type="password" name="password2">
+    <br>
+    <br>
+    <input type="submit" name="submit" value="register">
 </form>
-<br>
-<p>Click below for new users</p>
-<a href="{% url 'register' %}"><button>Register</button></a>
 </body>
 </html>

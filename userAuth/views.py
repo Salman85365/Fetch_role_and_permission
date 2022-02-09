@@ -25,3 +25,33 @@ def authenticate(request):
         }
         return render(request, "user_role_and_perm.html",context)
     return render(request,"login.html")
+
+
+def register(request):
+
+    if request.method == 'POST':
+
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password1']
+        password2 = request.POST['password2']
+
+        if password == password2:
+            if User.objects.filter(username=username).exists():
+                return HttpResponse("Username Exists! Try another One")
+            else:
+                if User.objects.filter(email=email).exists():
+                    return HttpResponse("Email already Exists! Try another One")
+                else:
+                    user = User.objects.create_user(username=username,
+                                                    email=email, password=password)
+                    user.save()
+                    return render(request,"register_success.html")
+        else:
+            return HttpResponse("Password do not matched!")
+    else:
+        return render(request, 'register.html')
+
+def logout(request):
+    auth.logout(request)
+    return redirect('login')
